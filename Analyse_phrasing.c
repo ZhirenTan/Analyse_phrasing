@@ -379,9 +379,6 @@ void procedure()
   }
  }
 }
-//＜常量定义＞   ::=   int＜标识符＞＝[+|-]＜整数＞{,＜标识符＞＝[+|-]＜整数＞}
-//                   | float＜标识符＞＝[+|-]＜实数＞{,＜标识符＞＝[+|-]＜实数＞}
-//                   | char＜标识符＞＝＜字符＞{,＜标识符＞＝＜字符＞}
 void constdef( symkind per_sym )          
 {
  if (sym==identitysym) {
@@ -442,7 +439,7 @@ void constdef( symkind per_sym )
     else if (kind==22) emit("const","float",intnumstr,name);
     else if (kind==23) emit("const","char",intnumstr,name);
    }
-   //不是+|-|整数|实数|字符或者类型声明与标识符类型不匹配，则类型不匹配
+
    else {
     error(6);
     while (sym!=commasym && sym!=semsym) {
@@ -476,7 +473,6 @@ void constdef( symkind per_sym )
  return ;
 }
 
-//＜声明头部＞   ::=    int＜标识符＞ |float ＜标识符＞|char＜标识符＞
 void defhead()                 
 {
  if (sym==intsym || sym==floatsym || sym==charsym) {
@@ -572,9 +568,6 @@ void conststate()
  getsym();
  return;
 }
-//＜类型标识符＞   ::=    int | float | char
-//＜参数＞         ::=    ＜参数表＞
-//＜参数表＞       ::=    ＜类型标识符＞＜标识符＞{,＜类型标识符＞＜标识符＞}| ＜空＞
 void parametertable()
 {
  int i=0;     //记录参数个数
@@ -702,7 +695,6 @@ void vardef()
  }
  return;
 }
-//＜变量说明部分＞  ::= ＜变量定义＞;{＜变量定义＞;}
 void varstate()
 {
  vardef();
